@@ -46,7 +46,7 @@ app.use(expressLayouts)
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log(`Successfuly connected to MongoDB Atlass`))
+.then(() => console.log(`Successfuly connected to local mongodb`))
 .catch((error) => console.error(error))
 
 // HTTP Routes

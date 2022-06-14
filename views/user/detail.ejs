@@ -1,0 +1,124 @@
+<div class="container-fluid mb-5" style="background-color: rgb(248, 249, 250);">
+    <div class="row">
+        <div class="col p-5">
+            <h1 class="display-6">Rincian Agenda</h1>
+            <% if (error.length > 0) { %>
+                      <div class="alert alert-primary alert-dismissible fade show">
+                          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                          <i class="fa-solid fa-circle-info"></i> <%= error %>
+                      </div>
+              <% } %>
+            <p class="text-secondary">Terakhir disunting : <%= agenda.updatedAt.toLocaleString('id') %></p>
+            <a href="/" style="text-decoration: none;">< Kembali</a>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="width: 300px;"></th>
+                    <th scope="col" style="width: 100px;"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Nama Kegiatan</th>
+                    <td>:</td>
+                    <td><%= agenda.name %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Author</th>
+                    <td>:</td>
+                    <td><%= agenda.author %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tanggal</th>
+                    <td>:</td>
+                    <td><%= agenda.date.toLocaleDateString('id') %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Waktu</th>
+                    <td>:</td>
+                    <td><%= agenda.date.toLocaleTimeString() %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Status</th>
+                    <td>:</td>
+                    <td><%= agenda.status %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tempat Pelaksanaan</th>
+                    <td>:</td>
+                    <td><%= agenda.location %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Keterangan</th>
+                    <td>:</td>
+                    <td><%= agenda.message %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="input-group">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEdit" style="width: 100px;"><i class="bi bi-pencil-fill"></i> Edit</button>
+                <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalDelete" style="width: 100px;"><i class="bi bi-trash3-fill"></i> Hapus</button>
+              </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="modalEdit" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Agenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form method="POST" action="/agenda?_method=PUT">
+              <div class="mb-3">
+                <label for="name" class="form-label">Nama Agenda</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= agenda.name %>" aria-describedby="emailHelp" required>
+              </div>
+              <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="datetime-local" class="form-control" id="date" name="date" value="<%= agenda.date %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="location" class="form-label">Tempat</label>
+                <input type="text" class="form-control" id="location" name="location" value="<%= agenda.location %>" required>
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Keterangan</label>
+                <textarea class="form-control" id="message" name="message" value="<%= agenda.message %>" rows="5" style="resize: none;"></textarea>
+              </div>
+
+              <input type="hidden" name="id" value=<%= agenda.id %>>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Edit Agenda</button>
+              </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="modalDelete" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Agenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <form method="POST" action="/agenda?_method=DELETE">
+          <input type="hidden" name="id" value=<%= agenda.id %>>
+
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-danger">Hapus Agenda</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
