@@ -53,6 +53,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/', require('./routes/view'))
 
 app.use('/user', require('./routes/user'))
+app.use('/agenda', require('./routes/agenda'))
 
 // Ping Server!
 app.get('/ping', (req, res, next) => {

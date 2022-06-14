@@ -1,0 +1,93 @@
+<div id="agenda" class="row">
+    <div class="col-md-5 col-lg-4 col-xl-3 mb-lg-0 mb-5">
+        <div class="card text" style="width: 14rem; background-color: rgba(248, 249, 250, 1);">
+            <img src="/image/user-profile/profile-pic.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= locals.userName %></h5>
+              <h6 class="card-subtitle mb-5 text-muted"><%= locals.userEmail %></h6>
+              <a href="/user/logout" class="card-link text-danger" style="text-decoration: none;">Logout</a>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-6 col-lg-7 col-xl-9">
+        <div class="row mb-4">
+            <h3>Agenda</h3>
+        </div>
+        
+        <% if (agenda) { %>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="alert alert-primary alert-dismissible fade show">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <i class="fa-solid fa-circle-info"></i> Belum ada agenda terdaftar.
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+        <div class="row">
+            <div class="col">
+                <table class="table table-secondary mb-4">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width: 3rem;">No</th>
+                        <th scope="col">Agenda</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" style="width: 5rem;">Detail</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <% agenda.forEach((agenda, index) => { %>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                  </table>
+        
+                  <div class="text-center">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAgenda">Tambah Agenda</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAgenda" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tambah Agenda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/agenda">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Nama Agenda</label>
+                  <input type="text" class="form-control" id="name" name="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="datetime-local" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="mb-3">
+                  <label for="location" class="form-label">Tempat</label>
+                  <input type="text" class="form-control" id="location" name="location" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Keterangan</label>
+                  <textarea class="form-control" id="message" name="message" rows="5" style="resize: none;"></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                  <button type="submit" class="btn btn-primary">Tambah Agenda</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

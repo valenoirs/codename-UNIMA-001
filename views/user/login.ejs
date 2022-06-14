@@ -1,14 +1,37 @@
-<div class="col-sm-12 col-md-5">
-  <h3 class="mb-3">Login</h3>
-  <form method="POST" action="/user/login">
-    <div class="mb-3">
-      <label for="email" class="form-label">E-mail</label>
-      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+<div class="row">
+  <div class="col-md-5 col-lg-4 col-xl-3 mb-lg-0 mb-5">
+    <div class="card" style="width: 14rem; background-color: rgba(248, 249, 250, 1);">
+      <img src="/image/user-profile/profile-pic.webp" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= locals.userName %></h5>
+        <h6 class="card-subtitle mb-5 text-muted"><%= locals.userEmail %></h6>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <div class="col-md-6 col-lg-7 col-xl-8">
+    <div class="row mb-3">
+      <div class="col">
+          <div class="alert alert-primary alert-dismissible fade show">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <i class="fa-solid fa-circle-info"></i> Login untuk melanjutkan.
+          </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-dark">Login</button>
-  </form>
+    <div class="row">
+      <div class="col">
+        <h3 class="mb-4">Login</h3>
+        <form method="POST" action="/user/login">
+          <div class="mb-4">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" style="width: 400px;" required>
+          </div>
+          <div class="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" style="width: 400px;" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100px;">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
