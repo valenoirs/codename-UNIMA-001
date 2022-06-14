@@ -1,0 +1,71 @@
+<div class="container-fluid mb-5">
+    <div id="home" class="row d-flex align-items-center justify-content-center">
+        <div id="home-content" class="col-md-8 col-sm-12 text-center p-5">
+            <div class="row mb-3">
+                <blockquote class="blockquote">Agenda</blockquote>
+                <h3 class="display-6">Dinas Komunikasi dan Informatika</h3>
+                <h3 class="display-6">Kota Manado</h3>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-2">
+                    <img src="./kominfo.png" alt="" style="height: 100px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mb-5">
+    <div id="agenda" class="row d-flex align-items-center justify-content-center">
+        <div class="col-md-8 col-sm-12">
+            <div class="row mb-4">
+                <h3>Agenda</h3>
+            </div>
+            <div class="row">
+                <div>
+                    <% if (error.length > 0) { %>
+                    <div class="row">
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <i class="bi bi-info-circle"></i> <%= error %>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <% if (!locals.userId) { %>
+                    <%- include('login') %> 
+                <% } else { %>
+                    <table class="table table-secondary">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Handle</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td colspan="2">Larry the Bird</td>
+                            <td>@twitter</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>

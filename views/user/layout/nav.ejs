@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand p-2" href="">SisAgen</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/"><i class="bi bi-house-door"></i> Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-journal-bookmark"></i> Agenda
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/agenda">Lihat Agenda</a></li>
+                <li><a class="dropdown-item" href="/agenda/tambah">Tambah Agenda</a></li>
+                </ul>
+            </li>
+            </ul>
+            <div class="d-flex ms-4">
+                <% if (locals.userId) { %>
+                    <a class="text-light me-4" href="/user/logout" style="text-decoration: none;">Logout</a>
+                <% } else { %>
+                    <a class="text-light me-4" href="/login" style="text-decoration: none;">Login</a>
+                <% } %> 
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>

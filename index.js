@@ -25,6 +25,15 @@ app.use(session({
     }
 }))
 
+app.use((req, res, next) => {
+    if(req.session.userId && req.session.userName && req.session.userEmail){
+        res.locals.userId = req.session.userId
+        res.locals.userName = req.session.userName
+        res.locals.userEmail = req.session.userEmail
+    }
+    next()
+})
+
 app.use(flash())
 app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
