@@ -37,6 +37,7 @@
                         <th scope="col" style="width: 3rem;">No</th>
                         <th scope="col">Agenda</th>
                         <th scope="col">Author</th>
+                        <th scope="col">Waktu Pelaksanaan</th>
                         <th scope="col">Status</th>
                         <th scope="col" style="width: 5rem;">Detail</th>
                       </tr>
@@ -45,8 +46,9 @@
                         <% agenda.forEach((agenda, index) => { %>
                             <tr>
                               <td scope="row"><%= index + 1 %></td>
-                              <td><%= agenda.name  %></td>
+                              <td><%= agenda.name %></td>
                               <td><%= agenda.author %></td>
+                              <td><%= agenda.date.toLocaleString('id') %></td>
                               <td><%= agenda.status %></td>
                               <td>
                                 <a href="/<%= agenda.id %>">Detail</a>

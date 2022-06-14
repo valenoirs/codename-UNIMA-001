@@ -8,7 +8,7 @@
                           <i class="fa-solid fa-circle-info"></i> <%= error %>
                       </div>
               <% } %>
-            <p class="text-secondary">Terakhir disunting : <%= agenda.updatedAt.toLocaleString('id') %></p>
+            <p class="text-secondary">Terakhir diubah : <%= agenda.updatedAt.toLocaleString('id') %></p>
             <a href="/" style="text-decoration: none;">< Kembali</a>
             <table class="table">
                 <thead>
@@ -88,7 +88,7 @@
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Keterangan</label>
-                <textarea class="form-control" id="message" name="message" value="<%= agenda.message %>" rows="5" style="resize: none;"></textarea>
+                <textarea class="form-control" id="message" name="message" rows="5" style="resize: none;"><%= agenda.message %></textarea>
               </div>
 
               <input type="hidden" name="id" value=<%= agenda.id %>>
