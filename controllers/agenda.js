@@ -9,6 +9,7 @@ module.exports.addAgenda = (req, res) => {
         console.log(newAgenda)
         newAgenda.save()
 
+        req.flash('error', 'Satu agenda ditambahkan.')
         console.log('New Agenda added')
         return res.redirect('/')
     }
