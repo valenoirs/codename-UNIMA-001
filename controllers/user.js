@@ -40,6 +40,7 @@ exports.logout = (req, res) => {
     try{
         delete req.session.userId
         delete req.session.userName
+        delete req.session.userEmail
 
         console.log('User logged out!')
         return res.redirect('/')
