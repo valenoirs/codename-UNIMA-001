@@ -60,7 +60,7 @@
                       <form method="POST" action="/agenda?_method=PUT">
                         <%= agenda.status %>
                         <input type="hidden" name="id" value=<%= agenda.id %>>
-                        <% if (agenda.status === 'Belum Dimulai') { %>
+                        <% if (agenda.status === 'Belum Terlaksana') { %>
                           <button type="submit" class="btn text-primary ms-3" style="border: 0;padding: 0;">
                             <i class="bi bi-calendar-check-fill"></i> Selesai
                           </button>

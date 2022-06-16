@@ -1,22 +1,22 @@
 const Agenda = require('../models/agenda')
 
-module.exports.addAgenda = (req, res) => {
+module.exports.addAgenda = async (req, res) => {
     try{
         req.body.author = req.session.userName
 
         const newAgenda = new Agenda(req.body)
 
         console.log(newAgenda)
-        newAgenda.save()
+        await newAgenda.save()
 
-        req.flash('error', 'Satu agenda ditambahkan.')
         console.log('New Agenda added')
+        req.flash('error', 'Satu agenda ditambahkan.')
         return res.redirect('/')
     }
     catch (e) {
         console.error('adding agenda error!')
         req.flash('error', 'Gagal menambahkan agenda, silahkan coba lagi.')
-        return res.redirect('back')
+        return res.redirect('/')
     }
 }
 
@@ -43,12 +43,12 @@ exports.editAgenda = async (req, res) => {
 
         console.log('Agenda edited!')
         req.flash('error', 'Agenda berhasil diubah.')
-        return res.redirect('back')
+        return res.redirect(`/${id}`)
     }
     catch (e) {
         console.error('editing agenda error!')
         req.flash('error', 'Gagal mengubah agenda, silahkan coba lagi.')
-        return res.redirect('back')
+        return res.redirect(`/${id}`)
     }
 }
 
@@ -98,7 +98,7 @@ exports.updateStatusAgenda = async (req, res) => {
 
         console.log('Agenda status updated!')
         req.flash('error', 'Status agenda berhasil diubah.')
-        return res.redirect('back')
+        return res.redirect(`/${id}`)
     }
     catch (e) {
         console.error('deleting agenda error!', e)

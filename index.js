@@ -11,15 +11,20 @@ require('dotenv').config()
 const app = express()
 const port = process.env.PORT || 5000
 
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log(`Successfuly connected to mongodb database`))
+.catch((error) => console.error('database-connection-error', error))
+
 // Middleware
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI,
-        collectionName: 'sessions'
-    }),
+    // store: MongoStore.create({
+    //     mongoUrl: process.env.MONGO_URI,
+    //     collectionName: 'sessions'
+    // }),
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 // 1 day
     }
@@ -43,11 +48,6 @@ app.use(methodOverride('_method'))
 // Templating Engine
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
-
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log(`Successfuly connected to local mongodb`))
-.catch((error) => console.error(error))
 
 // HTTP Routes
 app.use('/', require('./routes/view'))
