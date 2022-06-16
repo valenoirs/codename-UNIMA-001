@@ -70,8 +70,39 @@ exports.deleteAgenda = async (req, res) => {
         return res.redirect('/')
     }
     catch (e) {
-        console.error('deleting agenda error!')
+        console.error('deleting agenda error!', e)
         req.flash('error', 'Gagal menghapus agenda, silahkan coba lagi.')
+        return res.redirect('/')
+    }
+}
+
+exports.updateStatusAgenda = async (req, res) => {
+    console.log(req.body)
+    try{
+        const {id} = req.body
+
+        const agenda = await Agenda.findById(id)
+        console.log(agenda)
+
+        if(!agenda) {
+            console.error('agenda not found!')
+            req.flash('error', 'Agenda yang akan diubah tidak ditemukan.')
+            return res.redirect('/')
+        }
+
+        await Agenda.findByIdAndUpdate(id, {
+            $set: {
+                status: 'Selesai'
+            }
+        })
+
+        console.log('Agenda status updated!')
+        req.flash('error', 'Status agenda berhasil diubah.')
+        return res.redirect('back')
+    }
+    catch (e) {
+        console.error('deleting agenda error!', e)
+        req.flash('error', 'Gagal mengubah status agenda, silahkan coba lagi.')
         return res.redirect('/')
     }
 }

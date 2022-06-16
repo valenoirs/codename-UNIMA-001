@@ -3,8 +3,14 @@
     <div class="card" style="width: 14rem; background-color: rgba(248, 249, 250, 1);">
       <img src="/image/user-profile/default.webp" class="card-img-top" alt="...">
       <div class="card-body">
-        <h6 class="card-subtitle mb-5 text-muted text-center">Siapa?</h6>
+        <h5 class="card-title"></h5>
+        <h6 class="card-subtitle mb-5 text-muted">Selamat Datang</h6>
       </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <p class="text-primary">© Diskominfo</p>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="col-md-6 col-lg-7 col-xl-8">
@@ -22,13 +28,13 @@
         <form method="POST" action="/user/login">
           <div class="mb-4">
             <label for="email" class="form-label">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" style="width: 400px;" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="admin@kominfo.go.id" aria-describedby="emailHelp" style="width: 400px;" required>
           </div>
           <div class="mb-4">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" style="width: 400px;" required>
+            <input type="password" class="form-control" id="password" placeholder="********" name="password" style="width: 400px;" required>
           </div>
-          <button type="submit" class="btn btn-primary" style="width: 100px;">Login</button>
+          <button type="submit" class="btn btn-primary" style="width: 100px;"><i class="bi bi-box-arrow-in-right"></i> Login</button>
         </form>
       </div>
     </div>
