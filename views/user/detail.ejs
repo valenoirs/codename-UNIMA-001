@@ -30,24 +30,24 @@
                     <td><%= agenda.author %></td>
                   </tr>
                   <tr>
-                    <th scope="row">Tanggal</th>
+                    <th scope="row">Hari Pelaksanaan</th>
                     <td>:</td>
-                    <td><%= agenda.date.toLocaleDateString('id') %></td>
+                    <td><%= agenda.date.toLocaleDateString('id', {weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'}) %></td>
                   </tr>
                   <tr>
-                    <th scope="row">Waktu</th>
+                    <th scope="row">Waktu Pelaksanaan</th>
                     <td>:</td>
-                    <td><%= agenda.date.toLocaleTimeString() %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Status</th>
-                    <td>:</td>
-                    <td><%= agenda.status %></td>
+                    <td><%= agenda.date.toLocaleTimeString('id', {hour: '2-digit', minute: '2-digit'}) %></td>
                   </tr>
                   <tr>
                     <th scope="row">Tempat Pelaksanaan</th>
                     <td>:</td>
                     <td><%= agenda.location %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Status</th>
+                    <td>:</td>
+                    <td><%= agenda.status %></td>
                   </tr>
                   <tr>
                     <th scope="row">Keterangan</th>
@@ -80,7 +80,7 @@
               </div>
               <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
-                <input type="datetime-local" class="form-control" id="date" name="date" value="<%= agenda.date %>" required>
+                <input type="datetime-local" class="form-control" id="date" name="date" value=<%= agenda.date %> required>
               </div>
               <div class="mb-3">
                 <label for="location" class="form-label">Tempat</label>
