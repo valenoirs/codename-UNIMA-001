@@ -1,6 +1,5 @@
-const User = require('../models/user')
-
 const comparePassword = require('../utils/comparePassword')
+const User = require('../models/user')
 
 module.exports.login = async (req, res) => {
     try{
@@ -25,13 +24,14 @@ module.exports.login = async (req, res) => {
         req.session.userId = user.id
         req.session.userName = user.name
         req.session.userEmail = user.email
+        req.session.userPic = user.pic
 
         console.log('User logged in')
         return res.redirect('/')
     }
     catch (e) {
-        console.error('login-error', error)
-        req.flash('error', 'Login Error!')
+        console.error('login-error', e)
+        req.flash('errer', 'Login Error!')
         return res.redirect('/')
     }
 }
@@ -46,8 +46,33 @@ exports.logout = (req, res) => {
         return res.redirect('/')
     }
     catch(e){
-        console.error('logout-error', error)
+        console.error('logout-error', e)
         req.flash('error', 'Logout Error!')
+        return res.redirect('/')
+    }
+}
+
+exports.upload = async (req, res) => {
+    try {
+        const {filename, destination} = req.file
+        const {userId} = req.session
+
+        await User.updateOne({id:userId}, {
+            $set: {
+                pic: `${destination.slice(8)}/${filename}`
+            }
+        })
+
+        req.session.userPic = `${destination.slice(8)}/${filename}`
+
+        console.log('user profile updated')
+        req.flash('error', 'Profil user berhasil diubah.')
+        return res.redirect('/')
+
+    }
+    catch (e) {
+        console.error('upload-error', e)
+        req.flash('error', 'File tidak sesuai')
         return res.redirect('/')
     }
 }
